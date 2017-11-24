@@ -139,4 +139,32 @@ class FeedsTamperEditForm extends FeedsTamperBaseForm {
     return $form;
   }
 
+  public function tamperValidate($form, FormStateInterface $form_state) {
+
+  }
+
+  /**
+   * Submit handler for image effect.
+   */
+  public function tamperSave($form, FormStateInterface $form_state) {
+    $this->save($form, $form_state);
+
+    $tamper = $this->tamperManager->getDefinition($form_state->getValue('new'));
+
+    if (is_subclass_of($tamper['class'], 'X')) { // @todo: Add config interface.
+      // add redirect to add form.
+    }
+    else {
+      // create redirect and save to feed tamper.
+    }
+
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    // update weights...
+  }
+
 }
