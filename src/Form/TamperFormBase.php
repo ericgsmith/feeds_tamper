@@ -29,7 +29,7 @@ abstract class TamperFormBase extends FormBase {
   /**
    * The tamper plugin.
    *
-   * @var \Drupal\tamper\TamperInterface
+   * @var \Drupal\tamper\ConfigurableTamperInterface
    */
   protected $tamper;
 
@@ -72,7 +72,7 @@ abstract class TamperFormBase extends FormBase {
     $subform_state = SubformState::createForSubform($form['data'], $form, $form_state);
 
     /** @todo: Use configure name style as per image effects? */
-    $form['data'] = $this->tamper->settingsForm($form['data'], $subform_state);
+    $form['data'] = $this->tamper->buildConfigurationForm($form['data'], $subform_state);
     $form['data']['#tree'] = TRUE;
 
     $form['actions'] = ['#type' => 'actions'];

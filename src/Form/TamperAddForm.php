@@ -30,8 +30,8 @@ class TamperAddForm extends TamperFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, FeedsTamperInterface $feedsTamper = NULL, $source = NULL, $tamper = NULL) {
-    $form = parent::buildForm($form, $form_state, $feedsTamper, $source, $tamper);
+  public function buildForm(array $form, FormStateInterface $form_state, $feeds_tamper = NULL, $source = NULL, $tamper = NULL) {
+    $form = parent::buildForm($form, $form_state, $feeds_tamper, $source, $tamper);
 
     $form['#title'] = $this->t('Add %label tamper', ['%label' => $this->tamper->getPluginId()]);
     $form['actions']['submit']['#value'] = $this->t('Add tamper');

@@ -98,12 +98,11 @@ class FeedsTamperEditForm extends FeedsTamperBaseForm {
     }
 
     $form['source_tampers']['new'] = [
-      '#tree' => FALSE,
       '#weight' => isset($user_input['weight']) ? $user_input['weight'] : NULL,
       '#attributes' => ['class' => ['draggable']],
     ];
 
-    $form['source_tampers']['new']['effect'] = [
+    $form['source_tampers']['new']['tamper'] = [
       'data' => [
         'new' => [
           '#type' => 'select',
@@ -149,13 +148,26 @@ class FeedsTamperEditForm extends FeedsTamperBaseForm {
   public function tamperSave($form, FormStateInterface $form_state) {
     $this->save($form, $form_state);
 
-    $tamper = $this->tamperManager->getDefinition($form_state->getValue('new'));
-
-    if (is_subclass_of($tamper['class'], 'X')) { // @todo: Add config interface.
-      // add redirect to add form.
-    }
-    else {
-      // create redirect and save to feed tamper.
+    $tampers = $form_state->getValue('tampers');
+    foreach ($tampers as $key => $tamper) {
+      if (!empty($tamper['source_tampers']['new']['tamper']['data']['new'])) {
+        $tamperPlugin =  $this->tamperManager->getDefinition($tamper['source_tampers']['new']['tamper']['data']['new']);
+        if (is_subclass_of($tamperPlugin['class'], '\Drupal\tamper\ConfigurableTamperInterface')) {
+          $form_state->setRedirect(
+            'feeds_tamper.tamper_add_form',
+            [
+              'feeds_tamper' => $this->entity->id(),
+              'source' => $key,
+              'tamper' => $tamperPlugin['id'],
+            ],
+            ['query' => ['weight' => $form_state->getValue('weight')]]
+          );
+        }
+        else {
+          // create redirect and save to feed tamper.
+        }
+        return;
+      }
     }
 
   }
