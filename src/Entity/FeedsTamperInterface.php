@@ -9,5 +9,20 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  */
 interface FeedsTamperInterface extends ConfigEntityInterface {
 
-  // Add get/set methods for your configuration properties here.
+  /**
+   * Get the target feed type id.
+   * @return string
+   */
+  public function getTargetFeedTypeId();
+
+  /**
+   * Get the tamper plugins for a source plugin.
+   *
+   * @param string $source
+   *   Source field.
+   *
+   * @return \Drupal\tamper\TamperInterface[]
+   *   List of tampers
+   */
+  public function getTampers($source);
 }

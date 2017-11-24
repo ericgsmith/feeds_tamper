@@ -14,7 +14,7 @@ use Drupal\tamper\TamperInterface;
  *   handlers = {
  *     "form" = {
  *       "add" = "Drupal\feeds_tamper\Form\FeedsTamperForm",
- *       "edit" = "Drupal\feeds_tamper\Form\FeedsTamperForm",
+ *       "edit" = "Drupal\feeds_tamper\Form\FeedsTamperEditForm",
  *       "delete" = "Drupal\feeds_tamper\Form\FeedsTamperDeleteForm"
  *     },
  *     "list_builder" = "Drupal\feeds_tamper\FeedsTamperListBuilder",
@@ -62,9 +62,14 @@ class FeedsTamper extends ConfigEntityBase implements FeedsTamperInterface {
    */
   protected $tampers = [];
 
-  public function getTargetFeedType() {
-    return $this->targetFeedType;
+  public function getTargetFeedTypeId() {
+    return 'test_feed'; //$this->targetFeedType;
   }
+
+  public function getTampers($source) {
+    // TODO: Implement getTampers() method.
+  }
+
 
   public function addTamper($source, TamperInterface $tamper) {
 
