@@ -29,3 +29,11 @@ entity.feeds_tamper.delete_form:
     _title: 'Delete feeds_tamper'
   requirements:
     _permission: 'administer site configuration'
+
+feeds_tamper.tamper_add_form:
+  path: '/admin/structure/feeds_tamper/{feeds_tamper}/add/{source}/{tamper}'
+  defaults:
+    _form: '\Drupal\feeds_tamper\Form\TamperAddForm'
+    _title: 'Add tamper'
+  requirements:
+    _permission: 'administer site configuration'
