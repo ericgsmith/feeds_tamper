@@ -3,6 +3,7 @@
 namespace Drupal\feeds_tamper\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\tamper\TamperInterface;
 
 /**
  * Defines the Feeds tamper entity.
@@ -65,4 +66,7 @@ class FeedsTamper extends ConfigEntityBase implements FeedsTamperInterface {
     return $this->targetFeedType;
   }
 
+  public function addTamper($source, TamperInterface $tamper) {
+
+  }
 }

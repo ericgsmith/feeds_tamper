@@ -34,3 +34,5 @@ feeds_tamper.feeds_tamper.*:
                 settings:
                   type: tamper.settings.[%parent.type]
                   label: 'Settings'
+                uuid:
+                  type: uuid
