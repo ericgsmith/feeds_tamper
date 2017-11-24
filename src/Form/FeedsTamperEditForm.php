@@ -38,7 +38,7 @@ class FeedsTamperEditForm extends FeedsTamperBaseForm {
   /**
    * {@inheritdoc}
    */
-  public function form(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $form['#title'] = $this->t('Tamper settings for feed: @feed', ['@feed' => $this->getFeed()->label()]);
     $form['#tree'] = TRUE;
 

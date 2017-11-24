@@ -12,7 +12,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   label = @Translation("Feeds tamper"),
  *   handlers = {
  *     "form" = {
- *       "add" = "Drupal\feeds_tamper\Form\FeedsTamperForm",
+ *       "add" = "Drupal\feeds_tamper\Form\FeedsTamperAddForm",
  *       "edit" = "Drupal\feeds_tamper\Form\FeedsTamperEditForm",
  *       "delete" = "Drupal\feeds_tamper\Form\FeedsTamperDeleteForm"
  *     },
@@ -62,24 +62,28 @@ class FeedsTamper extends ConfigEntityBase implements FeedsTamperInterface {
   protected $tampers = [];
 
   public function getTargetFeedTypeId() {
-    return 'test_feed'; //$this->targetFeedType;
+    return $this->targetFeedType;
+  }
+
+  public function setTargetFeedTypeId($targetFeedTypeId) {
+    $this->targetFeedType = $targetFeedTypeId;
+  }
+
+  public function getTamper($tamper_uuid) {
+    // TODO: Implement getTamper() method.
   }
 
   public function getTampers($source) {
-    return isset($this->tampers[$source]) ? $this->tampers[$source] : [];
+    // TODO: Implement getTampers() method.
   }
 
-  public function addTamper($source, $tamper) {
-    if (empty($this->tampers[$source])) {
-      $this->tampers[$source] = [
-        'source' => $source
-      ];
-    }
-    $this->tampers[$source]['source_tampers'][] = [
-      'type' => $tamper->getPluginId(),
-      'weight' > $tamper->getWeight(),
-      'settings' => $tamper->getConfiguration(),
-      'uuid' => 'xxxxxxx',
-    ];
+  public function addTamper($source, $configuration) {
+    // TODO: Implement addTamper() method.
   }
+
+  public function deleteTamper($tamper_uuid) {
+    // TODO: Implement deleteTamper() method.
+  }
+
+
 }

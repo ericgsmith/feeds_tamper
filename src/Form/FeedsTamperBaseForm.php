@@ -13,11 +13,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class FeedsTamperBaseForm extends EntityForm {
 
   /**
+   * Feed tamper mapping entity.
+   *
    * @var \Drupal\feeds_tamper\Entity\FeedsTamperInterface
    */
   protected $entity;
 
   /**
+   * Feed type storage.
+   *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
   protected $feedStorge;

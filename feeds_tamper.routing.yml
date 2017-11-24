@@ -7,7 +7,7 @@ entity.feeds_tamper.collection:
     _permission: 'administer site configuration'
 
 entity.feeds_tamper.add_form:
-  path: '/admin/structure/feeds_tamper/add'
+  path: '/admin/structure/feeds/manage/{feeds_feed_type}/tamper/add'
   defaults:
     _entity_form: 'feeds_tamper.add'
     _title: 'Add feeds_tamper'
