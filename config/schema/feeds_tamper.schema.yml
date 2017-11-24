@@ -1,0 +1,36 @@
+feeds_tamper.feeds_tamper.*:
+  type: config_entity
+  label: 'Feeds tamper'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    targetFeedType:
+      type: string
+      label: 'Target feed type'
+    tampers:
+      type: sequence
+      label: 'Source tamper mappings'
+      sequence:
+        type: mapping
+        label: 'Source tamper mapping'
+        mapping:
+          source:
+            type: string
+            label: Source field
+          source_tampers:
+            type: sequence
+            label: 'Source tampers'
+            sequence:
+              type: mapping
+              label: 'Tamper'
+              mapping:
+                type:
+                  type: string
+                  label: 'Tamper plugin type'
+                weight:
+                  type: integer
+                  label: 'Weight'
+                settings:
+                  type: tamper.settings.[%parent.type]
+                  label: 'Settings'

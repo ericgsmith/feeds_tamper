@@ -1,0 +1,5 @@
+entity.feeds_tamper.add_form:
+  route_name: 'entity.feeds_tamper.add_form'
+  title: 'Add feed tamper'
+  appears_on:
+    - entity.feeds_tamper.collection

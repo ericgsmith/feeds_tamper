@@ -1,0 +1,8 @@
+name: feeds_tamper
+type: module
+description: Feeds tamper
+core: 8.x
+package: Feeds
+dependencies:
+  - feeds
+  - tamper

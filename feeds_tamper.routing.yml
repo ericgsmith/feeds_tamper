@@ -1,0 +1,31 @@
+entity.feeds_tamper.collection:
+  path: '/admin/structure/feeds_tamper'
+  defaults:
+    _entity_list: 'feeds_tamper'
+    _title: 'feeds_tamper configuration'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.feeds_tamper.add_form:
+  path: '/admin/structure/feeds_tamper/add'
+  defaults:
+    _entity_form: 'feeds_tamper.add'
+    _title: 'Add feeds_tamper'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.feeds_tamper.edit_form:
+  path: '/admin/structure/feeds_tamper/{feeds_tamper}'
+  defaults:
+    _entity_form: 'feeds_tamper.edit'
+    _title: 'Edit feeds_tamper'
+  requirements:
+    _permission: 'administer site configuration'
+
+entity.feeds_tamper.delete_form:
+  path: '/admin/structure/feeds_tamper/{feeds_tamper}/delete'
+  defaults:
+    _entity_form: 'feeds_tamper.delete'
+    _title: 'Delete feeds_tamper'
+  requirements:
+    _permission: 'administer site configuration'

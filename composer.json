@@ -1,0 +1,14 @@
+{
+  "name": "drupal/feeds_tamper",
+  "type": "drupal-module",
+  "description": "Feeds tamper",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/feeds_tamper",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/feeds_tamper",
+    "source": "http://cgit.drupalcode.org/feeds_tamper"
+  },
+  "require": { }
+}
