@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformState;
+use Drupal\feeds\Entity\FeedType;
 use Drupal\feeds_tamper\Entity\FeedsTamper;
 use Drupal\feeds_tamper\Entity\FeedsTamperInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -51,7 +52,7 @@ abstract class TamperFormBase extends FormBase {
    *   Tamper id.
    */
   public function buildForm(array $form, FormStateInterface $form_state, $feeds_tamper = NULL, $source = NULL, $tamper = NULL) {
-    $this->feedsTamper = $feeds_tamper;
+    $this->feedsTamper = FeedsTamper::load($feeds_tamper);
     $this->source = $source;
 
     try {
@@ -94,7 +95,7 @@ abstract class TamperFormBase extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $subform_state = SubformState::createForSubform($form['data'], $form, $form_state);
-    // @todo: Validate settings form on tamper?
+    $this->tamper->validateConfigurationForm($form, $subform_state);
   }
 
   /**
@@ -103,12 +104,11 @@ abstract class TamperFormBase extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $form_state->cleanValues();
 
-//    $this->tamper->submitConfigurationForm($form['data'], SubformState::createForSubform($form['data'], $form, $form_state));
+    $this->tamper->submitConfigurationForm($form['data'], SubformState::createForSubform($form['data'], $form, $form_state));
 
-    // @todo: Add this to tamper / feed etc.
-//    if (!$this->tamper->getUuid()) {
-//      $this->feedsTamper->addTamper($this->source, $this->tamper->getConfiguration());
-//    }
+    if (!$this->tamper->getUuid()) {
+      $this->feedsTamper->addTamper($this->source, $this->tamper);
+    }
     $this->feedsTamper->save();
 
     drupal_set_message($this->t('The tamper plugin was successfully applied.'));
